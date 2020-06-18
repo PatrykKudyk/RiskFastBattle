@@ -3,6 +3,6 @@
     <string name="title_1">Risk</string>
     <string name="title_2">Fast Battle</string>
     <string name="button_calculate">Calculate</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_attacker">Attackers amount</string>
+    <string name="hint_defender">Defenders amount</string>
 </resources>
