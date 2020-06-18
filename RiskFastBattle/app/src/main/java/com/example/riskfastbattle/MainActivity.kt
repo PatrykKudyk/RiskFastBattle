@@ -4,11 +4,13 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.riskfastbattle.fragments.EnterDataFragment
+import com.example.riskfastbattle.fragments.FightFragment
 import com.example.riskfastbattle.fragments.MainMenuFragment
 
 class MainActivity : AppCompatActivity(),
     MainMenuFragment.OnFragmentInteractionListener,
-    EnterDataFragment.OnFragmentInteractionListener {
+    EnterDataFragment.OnFragmentInteractionListener,
+    FightFragment.OnFragmentInteractionListener {
     lateinit var mainMenuFragment: MainMenuFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
