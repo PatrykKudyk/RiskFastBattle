@@ -5,4 +5,6 @@
     <string name="button_calculate">Calculate</string>
     <string name="hint_attacker">Attackers amount</string>
     <string name="hint_defender">Defenders amount</string>
+    <string name="button_begin_fight">Begin fight</string>
+    <string name="toast_fill_fields">Fill the fields!</string>
 </resources>

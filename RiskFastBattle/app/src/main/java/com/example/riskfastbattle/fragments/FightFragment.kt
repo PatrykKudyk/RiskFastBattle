@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import com.example.riskfastbattle.R
 
 
@@ -26,22 +24,19 @@ private const val ARG_PARAM2 = "param2"
  * Use the [AccountFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EnterDataFragment : Fragment() {
+class FightFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var param1: Int? = null
+    private var param2: Int? = null
     private var listener: OnFragmentInteractionListener? = null
 
     private lateinit var rootView: View
-    private lateinit var attackersEditText: EditText
-    private lateinit var defendersEditText: EditText
-    private lateinit var fightButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getInt(ARG_PARAM1)
+            param2 = it.getInt(ARG_PARAM2)
         }
     }
 
@@ -50,7 +45,7 @@ class EnterDataFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.fragment_enter_data, container, false);
+        rootView = inflater.inflate(R.layout.fragment_fight, container, false);
         initFragment()
         return rootView
     }
@@ -80,37 +75,16 @@ class EnterDataFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            EnterDataFragment().apply {
+        fun newInstance(param1: Int, param2: Int) =
+            FightFragment().apply {
                 arguments = Bundle().apply {
+                    putInt(ARG_PARAM1, param1)
+                    putInt(ARG_PARAM2, param2)
                 }
             }
     }
 
     private fun initFragment() {
-        attackersEditText = rootView.findViewById(R.id.enter_data_edit_text_attacker)
-        defendersEditText = rootView.findViewById(R.id.enter_data_edit_text_defender)
-        fightButton = rootView.findViewById(R.id.enter_data_button_begin_fight)
 
-        fightButton.setOnClickListener {
-            if (attackersEditText.text.toString() != "" && defendersEditText.text.toString() != "") {
-                val fightFragment = FightFragment.newInstance(
-                    attackersEditText.text.toString().toInt(),
-                    defendersEditText.text.toString().toInt()
-                )
-                fragmentManager
-                    ?.beginTransaction()
-                    ?.setCustomAnimations(
-                        R.anim.enter_left_to_right, R.anim.exit_right_to_left,
-                        R.anim.enter_right_to_left, R.anim.exit_left_to_right
-                    )
-                    ?.replace(R.id.frame_layout, fightFragment)
-                    ?.addToBackStack(FightFragment.toString())
-                    ?.commit()
-            } else {
-                Toast.makeText(rootView.context, R.string.toast_fill_fields, Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
     }
 }
