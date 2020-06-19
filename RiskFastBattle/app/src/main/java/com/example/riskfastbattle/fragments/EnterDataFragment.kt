@@ -3,6 +3,7 @@ package com.example.riskfastbattle.fragments
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -94,19 +95,27 @@ class EnterDataFragment : Fragment() {
 
         fightButton.setOnClickListener {
             if (attackersEditText.text.toString() != "" && defendersEditText.text.toString() != "") {
-                val fightFragment = FightFragment.newInstance(
-                    attackersEditText.text.toString().toInt(),
-                    defendersEditText.text.toString().toInt()
-                )
-                fragmentManager
-                    ?.beginTransaction()
-                    ?.setCustomAnimations(
-                        R.anim.enter_left_to_right, R.anim.exit_right_to_left,
-                        R.anim.enter_right_to_left, R.anim.exit_left_to_right
+                if (attackersEditText.text.toString().toInt() != 0 && defendersEditText.text.toString().toInt() != 0
+                ) {
+                    val fightFragment = FightFragment.newInstance(
+                        attackersEditText.text.toString().toInt(),
+                        defendersEditText.text.toString().toInt()
                     )
-                    ?.replace(R.id.frame_layout, fightFragment)
-                    ?.addToBackStack(FightFragment.toString())
-                    ?.commit()
+                    attackersEditText.setText("")
+                    defendersEditText.setText("")
+                    fragmentManager
+                        ?.beginTransaction()
+                        ?.setCustomAnimations(
+                            R.anim.enter_left_to_right, R.anim.exit_right_to_left,
+                            R.anim.enter_right_to_left, R.anim.exit_left_to_right
+                        )
+                        ?.replace(R.id.frame_layout, fightFragment)
+                        ?.addToBackStack(FightFragment.toString())
+                        ?.commit()
+                } else {
+                    Toast.makeText(rootView.context, R.string.toast_cant_be_0, Toast.LENGTH_SHORT)
+                        .show()
+                }
             } else {
                 Toast.makeText(rootView.context, R.string.toast_fill_fields, Toast.LENGTH_SHORT)
                     .show()

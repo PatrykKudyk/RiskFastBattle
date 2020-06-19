@@ -7,6 +7,7 @@
     <string name="hint_defender">Defenders amount</string>
     <string name="button_begin_fight">Begin fight</string>
     <string name="toast_fill_fields">Fill the fields!</string>
+    <string name="toast_cant_be_0">Values can\'t be 0</string>
     <string name="battle_title">Battle</string>
     <string name="battle_attacker_win">Attacker wins</string>
     <string name="battle_defender_win">Defender wins</string>
