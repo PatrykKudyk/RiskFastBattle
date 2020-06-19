@@ -7,7 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.riskfastbattle.R
+import com.example.riskfastbattle.adapters.BattleRecyclerViewAdapter
+import com.example.riskfastbattle.adapters.MarginItemDecoration
+import com.example.riskfastbattle.logic.BattleSimulator
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +36,9 @@ class FightFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     private lateinit var rootView: View
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var backButton: Button
+    private lateinit var againButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +93,40 @@ class FightFragment : Fragment() {
     }
 
     private fun initFragment() {
+        backButton = rootView.findViewById(R.id.battle_button_back)
+        againButton = rootView.findViewById(R.id.battle_button_again)
+        recyclerView = rootView.findViewById(R.id.battle_recycler_view)
+        val mLayoutManager: LinearLayoutManager = LinearLayoutManager(this.context)
+        recyclerView.layoutManager = mLayoutManager
 
+        recyclerView.addItemDecoration(
+            MarginItemDecoration(
+                12
+            )
+        )
+        val battleSimulator = BattleSimulator()
+        recyclerView.adapter = BattleRecyclerViewAdapter(
+            battleSimulator.makeBattle(
+                param1 as Int,
+                param2 as Int
+            )
+        )
+
+        backButton.setOnClickListener {
+            val mainMenuFragment = MainMenuFragment.newInstance()
+            fragmentManager
+                ?.beginTransaction()
+                ?.setCustomAnimations(
+                    R.anim.enter_left_to_right, R.anim.exit_right_to_left,
+                    R.anim.enter_right_to_left, R.anim.exit_left_to_right
+                )
+                ?.replace(R.id.frame_layout, mainMenuFragment)
+                ?.commit()
+        }
+
+        againButton.setOnClickListener {
+            fragmentManager
+                ?.popBackStack()
+        }
     }
 }
