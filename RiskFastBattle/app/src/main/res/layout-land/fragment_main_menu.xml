@@ -59,7 +59,7 @@
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintHeight_percent="0.15"
+                    app:layout_constraintHeight_percent="0.2"
                     app:layout_constraintTop_toBottomOf="@+id/menu_text_view_tile_2" />
 
                 <Button
@@ -73,10 +73,10 @@
                     android:textColor="@color/colorBackground"
                     android:textSize="25dip"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.08"
+                    app:layout_constraintHeight_percent="0.12"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view2"
-                    app:layout_constraintWidth_percent="0.4" />
+                    app:layout_constraintWidth_percent="0.25" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
